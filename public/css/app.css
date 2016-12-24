@@ -4,10 +4,11 @@ body {
   padding: 0;
   box-sizing: border-box; }
 
-body {
-  background-image: url("/assets/bg.jpg"); }
+.wrap {
+  background-image: url("/assets/bg.jpg");
+  min-height: 100vh; }
 
-span {
+.dot1 {
   font-size: 0px; }
 
 .main-header,
@@ -46,23 +47,57 @@ span {
   width: 90%;
   text-align: center;
   padding: 1em 0;
+  margin: auto;
+  vertical-align: text-top; }
+
+.contentContainer {
+  width: 90%;
+  text-align: center;
+  padding: 1em 0;
   margin: auto; }
 
 .pug-divs {
   background-color: white;
   display: inline-block;
   width: 320px;
-  height: 350px;
+  height: 400px;
   margin: 7px 15px; }
+
+.redditImage {
+  background-image: url("http://i.imgur.com/eYgsbSk.jpg");
+  background-size: cover;
+  height: 180px;
+  text-align: center;
+  max-height: 194px; }
+
+.contentContainer li {
+  display: inline-block;
+  text-align: left; }
+
+.text {
+  height: 200px; }
 
 .main-footer img {
   height: 0px;
   width: 0px; }
 
+footer {
+  height: 0px;
+  width: 0px; }
+
+h2 {
+  font-family: Lato;
+  color: #2c2c2e;
+  margin: 3px;
+  text-align: left;
+  height: 60px; }
+
 /* =================================
   Media Queries
 ==================================== */
 @media (min-width: 769px) {
+  .wrap {
+    min-height: 100vh; }
   .logo-div {
     text-align: center;
     margin: auto;
@@ -95,8 +130,8 @@ span {
     padding: 0;
     display: inline-block;
     background-color: white;
-    height: 350px;
-    margin: 8px; }
+    margin: 8px;
+    vertical-align: text-top; }
   .clearfix::after {
     content: "";
     display: table;
@@ -105,10 +140,10 @@ span {
     background-color: #2c2c2e;
     width: 100%; }
   .li-container {
-    width: 40%;
+    width: 50%;
     text-align: center;
     margin: auto; }
-  span {
+  .dot1 {
     font-size: 12px;
     color: gray; }
   .main-nav li {
@@ -116,7 +151,7 @@ span {
 
 @media (min-width: 1100px) {
   .wrap {
-    min-height: calc(100vh - 122px - $footer-height); }
+    min-height: 90vh; }
   .pug-container {
     max-width: 1000px; }
   .main-footer {
