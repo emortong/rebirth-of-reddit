@@ -35,25 +35,27 @@ var li_container = document.createElement('div');
 li_container.classList.add('li-container');
 main_nav.appendChild(li_container);
 
-var navLi1 = document.createElement('li');
-navLi1.innerHTML = 'RANDOM';
-li_container.appendChild(navLi1);
+var random = document.createElement('li');
+random.innerHTML = 'RANDOM';
+li_container.appendChild(random);
 
 var dot1 = document.createElement('SPAN');
 dot1.innerHTML = '●';
+dot1.classList.add('dot1');
 li_container.appendChild(dot1);
 
-var navLi2 = document.createElement('li');
-navLi2.innerHTML = 'MY BOARDS';
-li_container.appendChild(navLi2);
+var myBoards = document.createElement('li');
+myBoards.innerHTML = 'MY BOARDS';
+li_container.appendChild(myBoards);
 
 var dot2 = document.createElement('SPAN');
 dot2.innerHTML = '●';
+dot2.classList.add('dot1');
 li_container.appendChild(dot2);
 
-var navLi3 = document.createElement('li');
-navLi3.innerHTML = 'GET THE APP';
-li_container.appendChild(navLi3);
+var getTheApp = document.createElement('li');
+getTheApp.innerHTML = 'GET THE APP';
+li_container.appendChild(getTheApp);
 
 // ========================================
 //      PUG DIVS
@@ -68,44 +70,7 @@ var pug_container = document.createElement('div');
 pug_container.classList.add('pug-container');
 wrap.appendChild(pug_container);
 
-var pug_divs = document.createElement('div');
-pug_divs.classList.add('pug-divs');
-pug_container.appendChild(pug_divs);
 
-var contentContainer = document.createElement('div');
-contentContainer.classList.add('contentContainer');
-pug_divs.appendChild(contentContainer);
-
-var redditImage = document.createElement('div');
-redditImage.classList.add('redditImage');
-contentContainer.appendChild(redditImage);
-
-var textDiv = document.createElement('div');
-textDiv.classList.add('text');
-contentContainer.appendChild(textDiv);
-
-var redditTitle = document.createElement('h2');
-textDiv.appendChild(redditTitle);
-
-var liAuthor = document.createElement('li');
-textDiv.appendChild(liAuthor);
-
-var dot3 = document.createElement('SPAN');
-dot3.innerHTML = '●';
-textDiv.appendChild(dot3);
-
-var liDate = document.createElement('li');
-textDiv.appendChild(liDate);
-
-var dot4 = document.createElement('SPAN');
-dot4.innerHTML = '●';
-textDiv.appendChild(dot4);
-
-var liViews = document.createElement('li');
-textDiv.appendChild(liViews);
-
-var desc = document.createElement('p');
-textDiv.appendChild(desc);
 
 
 // ========================================
@@ -127,3 +92,107 @@ instaImg.setAttribute('src', '/assets/instagram_grey.svg');
 footer.appendChild(instaImg);
 
 
+
+// ========================================
+//      EVENT LISTENERS
+// ========================================
+
+random.addEventListener('click', function() {
+  var randomReq = new XMLHttpRequest();
+  randomReq.addEventListener('load', reqListener);
+  randomReq.open('GET', 'https://www.reddit.com/r/aww.json');
+  randomReq.send();
+})
+
+myBoards.addEventListener('click', function() {
+  var myBoardsReq = new XMLHttpRequest();
+  myBoardsReq.addEventListener('load', reqListener);
+  myBoardsReq.open('GET', 'https://www.reddit.com/r/pug.json');
+  myBoardsReq.send();
+
+})
+
+getTheApp.addEventListener('click', function() {
+  var getTheAppReq = new XMLHttpRequest();
+  getTheAppReq.addEventListener('load', reqListener);
+  getTheAppReq.open('GET', 'https://www.reddit.com/r/puppies.json');
+  getTheAppReq.send();
+})
+
+
+function reqListener() {
+
+    var myData = JSON.parse(this.responseText);
+
+    for(var i = 0; i < myData.data.children.length; i++) {
+      if(myData.data.children[i].data.post_hint === 'image') {
+
+        var picture = myData.data.children[i].data.url;
+        var title = myData.data.children[i].data.title;
+        if(title.length > 43) {
+          title = title.substring(0, 43) + ' ...';
+        }
+        var author = myData.data.children[i].data.author;
+        var date = myData.data.children[i].data.created;
+        date = dateCreated(date);
+
+        var upvotes = myData.data.children[i].data.score;
+        var description;
+        if(myData.data.children[i].data.link_flair_text !== null) {
+          description = myData.data.children[i].data.link_flair_text
+        } else {
+          description = 'No description';
+        }
+
+        var pug_divs = document.createElement('div');
+        pug_divs.classList.add('pug-divs');
+        pug_container.appendChild(pug_divs);
+
+        var contentContainer = document.createElement('div');
+        contentContainer.classList.add('contentContainer');
+        pug_divs.appendChild(contentContainer);
+
+        var redditImage = document.createElement('div');
+        redditImage.classList.add('redditImage');
+        redditImage.style.backgroundImage = `url(${picture})`;
+        contentContainer.appendChild(redditImage);
+
+        var textDiv = document.createElement('div');
+        textDiv.classList.add('text');
+        contentContainer.appendChild(textDiv);
+
+        var redditTitle = document.createElement('h2');
+        redditTitle.innerHTML = title;
+        textDiv.appendChild(redditTitle);
+
+        var liAuthor = document.createElement('li');
+        liAuthor.innerHTML = `by ${author} `;
+        textDiv.appendChild(liAuthor);
+
+        var dot3 = document.createElement('SPAN');
+        dot3.innerHTML = ' ● ';
+        textDiv.appendChild(dot3);
+
+        var liDate = document.createElement('li');
+        liDate.innerHTML = ` ${date} `;
+        textDiv.appendChild(liDate);
+
+        var dot4 = document.createElement('SPAN');
+        dot4.innerHTML = ' ● ';
+        textDiv.appendChild(dot4);
+
+        var liViews = document.createElement('li');
+        liViews.innerHTML = `${upvotes} upvotes`;
+        textDiv.appendChild(liViews);
+
+        var desc = document.createElement('p');
+        desc.innerHTML = description;
+        textDiv.appendChild(desc);
+      }
+    }
+  }
+
+  function dateCreated(date) {
+    var date = moment.unix(date);
+    return date;
+  }
