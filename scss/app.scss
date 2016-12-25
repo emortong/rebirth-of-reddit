@@ -8,9 +8,6 @@ body {
   color: silver;
 }
 
-
-
-
 .wrap {
   background-image: url('/assets/bg.jpg');
   min-height: 100vh;
@@ -19,7 +16,6 @@ body {
 .dot1 {
   font-size: 0px;
 }
-
 
 .main-header,
 .container,
@@ -35,11 +31,29 @@ padding: 2px 5px;;
 
 .logo-div {
   background-color:white;
+  position: relative;
 }
 
 .logo-deco {
   width: 0px;
   height: 0px;
+}
+
+.square {
+  width: 35px;
+  height: 35px;
+  border: 1.5px solid orange;
+  font-size: 28px;
+  color: #990000;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  text-align:center;
+}
+
+.square:hover {
+  background-color: #c85023;
+  color: white;
 }
 
 .main-nav {
@@ -62,7 +76,6 @@ padding: 2px 5px;;
 .main-nav li:hover {
   color: #c85023;
 }
-
 
 .pug-container {
   width: 90%;
@@ -88,7 +101,6 @@ padding: 2px 5px;;
   border-color: white;
   border-style: solid;
   border-width: 5px;
-
 }
 
 .pug-divs:hover {
@@ -96,11 +108,10 @@ padding: 2px 5px;;
 }
 
 .redditImage {
-  // background-image: url("http://i.imgur.com/eYgsbSk.jpg");
   background-size: cover;
-  height: 180px;
+  height: 210px;
   text-align: center;
-  max-height: 194px;
+  max-height: 210px;
 }
 
 .contentContainer li {
@@ -126,8 +137,6 @@ p {
   color: gray;
 }
 
-
-
 h2 {
   font-family: Lato;
   color: #2c2c2e;
@@ -135,7 +144,6 @@ h2 {
   text-align: left;
   height: 60px;
 }
-
 
 /* =================================
   Media Queries
@@ -163,7 +171,6 @@ h2 {
     right: 0;
   }
 
-
   .logo-deco {
     position: absolute;
     margin-left: auto;
@@ -175,15 +182,11 @@ h2 {
     height: 10px;
   }
 
-
-
-
   .pug-container {
     width: 90%;
     text-align: center;
     padding: 1em 0;
     margin: auto;
-
   }
 
   .pug-divs {
@@ -193,7 +196,6 @@ h2 {
     background-color: white;
     margin: 8px;
     vertical-align: text-top;
-
   }
 
   .clearfix::after {
@@ -216,20 +218,16 @@ h2 {
   .dot1 {
     font-size: 12px;
     color: gray;
-
   }
 
   .main-nav li {
     width: 100px;
   }
-
-
 }
 
 @media (min-width: 1100px) {
 
   $footer-height: 49px;
-
 
   .wrap {
     min-height: 90vh;

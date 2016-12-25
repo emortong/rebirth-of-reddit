@@ -27,6 +27,11 @@ logo_deco.classList.add('logo-deco');
 logo_deco.setAttribute('src', "/assets/header_bg.svg");
 logo_div.appendChild(logo_deco);
 
+var square = document.createElement('div');
+square.classList.add('square');
+square.innerHTML = '+'
+logo_div.appendChild(square);
+
 var main_nav = document.createElement('ul');
 main_nav.classList.add('main-nav');
 container1.appendChild(main_nav);
@@ -69,8 +74,6 @@ main.appendChild(wrap);
 var pug_container = document.createElement('div');
 pug_container.classList.add('pug-container');
 wrap.appendChild(pug_container);
-
-
 
 
 // ========================================
@@ -119,6 +122,9 @@ getTheApp.addEventListener('click', function() {
   getTheAppReq.send();
 })
 
+// ========================================
+//      REQUEST LISTENER
+// ========================================
 
 function reqListener() {
 
@@ -134,7 +140,7 @@ function reqListener() {
         }
         var author = myData.data.children[i].data.author;
         var date = myData.data.children[i].data.created;
-        date = dateCreated(date);
+        date = moment.unix(date).subtract(10, 'hours').fromNow()
 
         var upvotes = myData.data.children[i].data.score;
         var description;
@@ -192,7 +198,7 @@ function reqListener() {
     }
   }
 
-  function dateCreated(date) {
-    var date = moment.unix(date);
-    return date;
-  }
+
+
+
+

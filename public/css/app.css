@@ -24,11 +24,27 @@ body {
   padding: 2px 5px; }
 
 .logo-div {
-  background-color: white; }
+  background-color: white;
+  position: relative; }
 
 .logo-deco {
   width: 0px;
   height: 0px; }
+
+.square {
+  width: 35px;
+  height: 35px;
+  border: 1.5px solid orange;
+  font-size: 28px;
+  color: #990000;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  text-align: center; }
+
+.square:hover {
+  background-color: #c85023;
+  color: white; }
 
 .main-nav {
   margin: 0;
@@ -76,9 +92,9 @@ body {
 
 .redditImage {
   background-size: cover;
-  height: 180px;
+  height: 210px;
   text-align: center;
-  max-height: 194px; }
+  max-height: 210px; }
 
 .contentContainer li {
   display: inline-block;
