@@ -6,9 +6,53 @@
   <link rel="stylesheet" href="/css/app.css">
   <link href="https://fonts.googleapis.com/css?family=Lato|Oswald" rel="stylesheet">
 </head>
-<body>
-<div id="main"></div>
+<body ng-app="redditApp">
+<div class="main" ng-controller="myController">
+  <header class="main-header">
+    <div class="container">
+      <div class="logo-div">
+        <img src="/assets/logo.svg" class="logo">
+        <img src="/assets/header_bg.svg" class="logo-deco">
+        <div class="square">+</div>
+      </div>
+      <ul class="main-nav" >
+        <div class="li-container">
+          <li ng-click="logSubs('https://www.reddit.com/r/pug.json')">RANDOM</li>
+          <span class="dot1">●</span>
+          <li ng-click="logSubs('https://www.reddit.com/r/gif.json')">MY BOARDS</li>
+          <span class="dot1">●</span>
+          <li ng-click="logSubs('https://www.reddit.com/r/FoodPorn.json')">GET THE APP</li>
+        </div>
+      </ul>
+    </div>
+  </header>
+  <div class="wrap clearfix" >
+    <div class="pug-container">
+      <div class="pug-divs" ng-repeat="subreddit in subreddits">
+        <div class="contentContainer">
+          <div class="redditImage" style="background-image: url({{subreddit.data.url}})"></div>
+          <div class="text">
+            <h2>{{subreddit.data.title}}</h2>
+            <li>by {{subreddit.data.author}}</li>
+            <span> ● </span>
+            <li>{{subreddit.data.created}}</li>
+            <span> ● </span>
+            <li>upvotes: {{subreddit.data.ups}}</li>
+            <p> No description </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="main-footer">
+    <img src="/assets/facebook_grey.svg" id="fb">
+    <img src="/assets/instagram_grey.svg" id="instagram">
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-<script src="js/app.js"></script>
+<script src="./js/redditApp.js"></script>
+<script src="./js/controllers.js"></script>
+<script src="./js/providers.js"></script>
 </body>
 </html>
